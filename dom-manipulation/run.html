@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DOM Manipulation Runner</title>
+</head>
+<body>
+<script>
+  const files = {
+    "product-list-manager": "product_list_manager.js",
+    "live-character-counter": "live_character_counter.js",
+    "multi-step-form": "multi_step_form.js",
+    "theme-switcher": "theme_switcher.js",
+    "image-gallery": "image_gallery.js",
+    "student-table": "student_table.js",
+    "mouse-coordinates-logger": "mouse_coordinates_logger.js",
+    "custom-dropdown": "custom_dropdown.js",
+    "registration-form": "registration_form.js",
+  };
+  const exercise = new URLSearchParams(location.search).get("exercise");
+  if (!exercise) {
+    document.body.innerHTML = "<h3>Pick an exercise</h3>" +
+      Object.keys(files).map(k => `<p><a href="run.html?exercise=${k}">${k.replace(/-/g, " ")}</a></p>`).join("");
+  } else {
+    const script = document.createElement("script");
+    script.src = files[exercise];
+    document.body.appendChild(script);
+  }
+</script>
+</body>
+</html>
